@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/vatula/rustie-node#readme",
   "devDependencies": {
+    "rustie": "https://github.com/vatula/rustie.git",
     "babel-core": "^5.4.7",
     "babel-runtime": "^5.4.7",
     "babel-loader": "^5.1.4",
@@ -35,7 +36,6 @@
     "vinyl-paths": "^1.0.0"
   },
   "dependencies": {
-    "rustie": "https://github.com/vatula/rustie.git",
     "recursive-readdir": "^1.2.1",
     "mkdirp": "^0.5.1",
     "promisify-node": "^0.1.5"

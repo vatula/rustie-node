@@ -22,9 +22,10 @@ async function readFile(filePath) {
 export class NodeFileReder extends Reader {
 
   async read(from) {
-    let filePaths = (await readdir(from)).reduce((result, item) => result.concat(item), []);
+    let fullPath = path.resolve(process.cwd(), from);
+    let filePaths = (await readdir(fullPath)).reduce((result, item) => result.concat(item), []);
     let files = await Promise.all(filePaths.map(readFile));
-    let memoizer = memoizerFactory(from, files);
+    let memoizer = memoizerFactory(fullPath, files);
     return filePaths.reduce(memoizer, Object.create(null));
   }
 }

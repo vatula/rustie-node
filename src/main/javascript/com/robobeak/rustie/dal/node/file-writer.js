@@ -26,8 +26,9 @@ async function writeFile(data, to) {
 export class NodeFileWriter extends Writer {
 
   async write(to, files = Object.create(null)) {
+    let fullPath = path.resolve(process.cwd(), to);
     let filePaths = Object.keys(files);
-    let asyncBulkWriter = asyncBulkWriterFactory(writeFile, to, files);
+    let asyncBulkWriter = asyncBulkWriterFactory(writeFile, fullPath, files);
     let writerResult = filePaths.map(asyncBulkWriter);
     await Promise.all(writerResult);
     return true;
