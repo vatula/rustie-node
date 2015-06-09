@@ -19,23 +19,11 @@ gulp.task('clear', function() {
 
 gulp.task('default', ['clear'], function() {
   return gulp.src([sources, project, '**/*.js'].join('/'))
-    .pipe(webpack({
-      output: {
-        libraryTarget: 'umd'
-      },
-      module: {
-        loaders: [{
-          test: /\.js$/,
-          exclude: /(node_modules)/,
-          loader: 'babel',
-          query: {
-            "stage": 1,
-            "optional": ["runtime"]
-          }
-        }]
-      }
+    .pipe(babel({
+      'stage': 1,
+      'modules': 'umd',
+      'optional': ['runtime']
     }))
-    .pipe(concat('rustie.js'))
     .pipe(gulp.dest('lib/javascript'));
 });
 
