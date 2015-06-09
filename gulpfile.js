@@ -21,8 +21,7 @@ gulp.task('default', ['clear'], function() {
   return gulp.src([sources, project, '**/*.js'].join('/'))
     .pipe(babel({
       'stage': 1,
-      'modules': 'umd',
-      'optional': ['runtime']
+      'modules': 'umd'
     }))
     .pipe(gulp.dest('lib/javascript'));
 });
