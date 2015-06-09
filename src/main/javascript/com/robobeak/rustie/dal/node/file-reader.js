@@ -1,5 +1,6 @@
 import promisify      from 'promisify-node';
 import path           from 'path';
+import fs             from 'fs';
 import {Data, Reader} from 'rustie';
 
 let readdir   = promisify('recursive-readdir');
