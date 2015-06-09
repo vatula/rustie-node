@@ -2,7 +2,7 @@
   "name": "rustie-node",
   "version": "0.0.1",
   "description": "Rustie-Node is a static site builder that works in a Node environment",
-  "main": "lib/javascript/index.js",
+  "main": "lib/javascript/rustie-node-file.js",
   "scripts": {
     "test": "gulp test"
   },
