@@ -3,7 +3,7 @@ import path           from 'path';
 import {Data, Reader} from 'rustie';
 
 let readdir   = promisify('recursive-readdir');
-let fs        = promisify('fs');
+//let fs        = promisify('fs');
 
 function memoizerFactory(from, files) {
   return function memoizer(memo, filePath, i) {
@@ -14,7 +14,10 @@ function memoizerFactory(from, files) {
 }
 
 async function readFile(filePath) {
-  let contents = await fs.readFile(filePath);
+  let contents = await new Promise((resolve, reject) => { fs.readFile(filePath, (err, data) => {
+    if (err) reject(err);
+    else resolve(data);
+  }); });
   return new Data(new Uint8Array(contents));
 }
 
