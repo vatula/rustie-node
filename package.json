@@ -33,11 +33,11 @@
     "gulp-if": "^1.2.5",
     "gulp-mocha": "^2.1.0",
     "mkdirp": "^0.5.1",
-    "recursive-readdir": "^1.2.1",
     "vinyl-paths": "^1.0.0"
   },
   "dependencies": {
     "rustie": "https://github.com/vatula/rustie.git",
+    "recursive-readdir": "^1.2.1",
     "promisify-node": "^0.1.5"
   }
 }
