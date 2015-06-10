@@ -1,9 +1,10 @@
-import promisify      from 'promisify-node';
+//import promisify      from 'promisify-node';
 import path           from 'path';
 import fs             from 'fs';
+import readdir        from 'recursive-readdir';
 import {Data, Reader} from 'rustie';
 
-let readdir   = promisify('recursive-readdir');
+//let readdir   = promisify('recursive-readdir');
 //let fs        = promisify('fs');
 
 function memoizerFactory(from, files) {
@@ -27,7 +28,10 @@ export class NodeFileReder extends Reader {
 
   async read(from) {
     let fullPath = path.resolve(process.cwd(), from);
-    let filePaths = (await readdir(fullPath)).reduce((result, item) => result.concat(item), []);
+    let filePaths = (await new Promise((resolve, reject) => { readdir(fullPath, (err, data) => {
+      if (err) reject(err);
+      else resolve(data);
+    })})).reduce((result, item) => result.concat(item), []);
     let files = await Promise.all(filePaths.map(readFile));
     let memoizer = memoizerFactory(fullPath, files);
     return filePaths.reduce(memoizer, Object.create(null));
