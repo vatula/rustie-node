@@ -5,7 +5,7 @@
   "main": "lib/javascript/rustie-node-file.js",
   "scripts": {
     "test": "gulp test",
-    "postinstall": "gulp"
+    "prepublish": "gulp"
   },
   "repository": {
     "type": "git",
