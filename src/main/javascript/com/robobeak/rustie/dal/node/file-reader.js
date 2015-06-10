@@ -1,11 +1,7 @@
-//import promisify      from 'promisify-node';
 import path           from 'path';
 import fs             from 'fs';
 import readdir        from 'recursive-readdir';
 import {Data, Reader} from 'rustie';
-
-//let readdir   = promisify('recursive-readdir');
-//let fs        = promisify('fs');
 
 function memoizerFactory(from, files) {
   return function memoizer(memo, filePath, i) {

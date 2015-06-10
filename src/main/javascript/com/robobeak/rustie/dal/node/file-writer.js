@@ -1,14 +1,18 @@
-import promisify  from 'promisify-node';
 import path       from 'path';
 import {Writer}   from 'rustie';
 
-let mkdirp    = promisify('mkdirp');
-let fs        = promisify('fs');
+import mkdirp    from 'mkdirp';
+import fs        from 'fs';
 
 function asyncBulkWriterFactory(writer, to, files) {
   return async function asyncBulkWriter(filePath) {
     let file = path.resolve(to, filePath);
-    await mkdirp(to);
+    await new Promise((resolve, reject) => {
+      mkdirp(to, (err, data) => {
+        if (err) reject(err);
+        else resolve(data);
+      })
+    });
     return await writer(files[filePath], file);
   }
 }
@@ -19,7 +23,12 @@ function asyncBulkWriterFactory(writer, to, files) {
  * @returns {Promise}
  */
 async function writeFile(data, to) {
-  return await fs.writeFile(to, new Buffer(data.content));
+  return await new Promise((resolve, reject) => {
+    fs.writeFile(to, new Buffer(data.content), (err, data) => {
+      if (err) reject(err);
+      else resolve(data);
+    })
+  });
 }
 
 
