@@ -1,5 +1,4 @@
 var vinylPaths  = require('vinyl-paths');
-var webpack     = require('gulp-webpack');
 var gulpIf      = require('gulp-if');
 var concat      = require('gulp-concat');
 var babel       = require('gulp-babel');
